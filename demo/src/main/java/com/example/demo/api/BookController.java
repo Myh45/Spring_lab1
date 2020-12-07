@@ -40,7 +40,7 @@ public class BookController {
         bookService.deleteBook(id);
     }
 
-    @PutMapping
+    @PutMapping(path="{id}")
     public void updateBook(@PathVariable("id") UUID id, @RequestBody Book bookToUpdate){
         bookService.updateBook(id, bookToUpdate);
     }
