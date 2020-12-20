@@ -38,4 +38,15 @@ public class BookService {
     public int updateBook(UUID id, Book newBook){
         return fakeBookRepos.updateBookById(id, newBook);
     }
+    public int deleteAllBooks()
+    {
+        return  fakeBookRepos.deleteAllBooks();
+    };
+    public Optional<Book> getBookByAuthor(String author) {
+        return fakeBookRepos.selectByAuthor(author);
+    }
+    public Optional<Book> getBookByPublishing(String publishing) {
+        return fakeBookRepos.selectByPublishing(publishing);
+    }
+
 }

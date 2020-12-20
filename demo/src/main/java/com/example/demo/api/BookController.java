@@ -45,5 +45,19 @@ public class BookController {
         bookService.updateBook(id, bookToUpdate);
     }
 
+    @DeleteMapping
+    public int DeleteAllBooks()
+    {
+        return bookService.deleteAllBooks();
+    }
+
+    @GetMapping(path = "/get/{author}")
+    public Book getBookByAuthor(@PathVariable("author") String author)
+    {return bookService.getBookByAuthor(author).orElse(null);}
+
+    @GetMapping(path = "/get/publishing/{publishing}")
+    public Book getBookByPublisher(@PathVariable("publishing") String publishing)
+    {return bookService.getBookByPublishing(publishing).orElse(null);}
+
 
 }

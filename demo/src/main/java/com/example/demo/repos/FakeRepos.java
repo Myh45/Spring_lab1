@@ -51,15 +51,32 @@ public class FakeRepos implements BookDao {
                     int indexOfBookToUpdate = booksDB.indexOf(book);
                     if(indexOfBookToUpdate>=0){
                         booksDB.set(indexOfBookToUpdate,new Book(id,
-                                book.getTitle(),
-                                book.getAuthor(),
-                                book.getYear(),
-                                book.getPublishing(),
-                                book.getPageCount()));
+                                update.getTitle(),
+                                update.getAuthor(),
+                                update.getYear(),
+                                update.getPublishing(),
+                                update.getPageCount()));
                         return 1;
                     }
                     return 0;
                 })
                 .orElse(0);
     }
+
+    @Override
+    public int deleteAllBooks() {
+        booksDB.clear();
+        return 1;
+    }
+
+    @Override
+    public Optional<Book> selectByAuthor(String author) {
+        return booksDB.stream().filter(book -> book.getAuthor().equals(author)).findFirst();
+
+    }
+    @Override
+    public Optional<Book> selectByPublishing(String publishing) {
+        return booksDB.stream().filter(book -> book.getPublishing().equals(publishing)).findFirst();
+    }
+
 }
